@@ -18,9 +18,24 @@
   <body>
     <%# header %>
     <header>
-      <p>ResumeOnline</p>
-      <%= link_to 'ユーザー登録', new_user_registration_path, class: "sign-up" %>
-      <%= link_to '企業ユーザー登録', new_comp_registration_path, class: "sign-up" %>
+
+      <%= link_to 'ResumeOnline', "/", class:"" %>
+
+      <div class="" id="">
+        <ul class="" id="">
+          <% if user_signed_in? %>
+          <li><%= link_to current_user.name, edit_user_registration_path, class: "" %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+          <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+          <li><%= link_to 'ユーザー登録', new_user_registration_path, class: "sign-up" %></li>
+          <li><%= link_to '企業ユーザー登録', new_comp_registration_path, class: "sign-up" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      
+      
 
     </header>
 
