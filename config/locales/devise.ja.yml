@@ -2,7 +2,7 @@ ja:
   devise:
     confirmations:
       confirmed: 'メール認証が完了しました。'
-      send_instructions: 'アカウントの有効化について数分以内にメールでご連絡します。'
+      send_instructions: '認証用のメールを送信しました。'
       send_paranoid_instructions: "あなたのメールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。"
     failure:
       already_authenticated: 'すでにログインしています。'
