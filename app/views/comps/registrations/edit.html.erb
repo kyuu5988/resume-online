@@ -1,5 +1,6 @@
 <h2 class=""><%= current_comp.name %>様 アカウント情報</h2>
 
+<%# 各種情報 %>
 <div class="">
   <p class="">登録情報</p>
   <p class="">　　　　部署：<%= current_comp.group %></p>
@@ -9,44 +10,17 @@
   <p class="">ご利用プラン：<% if current_comp.pro %>Pro(有料)<% else %>無料<% end %></p><br>
 </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "comps/shared/error_messages", resource: resource %>
+<%# セキュリティ情報 %>
+<div class="">
+  <p class="">セキュリティ情報</p>
+  <p class="">前回ログイン日時：<%= current_comp.last_sign_in_at %></p>
+  <p class="">最新ログイン日時：<%= current_comp.current_sign_in_at %></p>
+  <p class="">　前回ログインIP：<%= current_comp.last_sign_in_ip %></p>
+  <p class="">　最新ログインIP：<%= current_comp.current_sign_in_ip %></p>
+  <p class="">累計ログイン回数：<%= current_comp.sign_in_count %></p><br>
+  <p class="">前回メール認証送信日時：<%= current_comp.confirmation_sent_at %></p>
+  <p class="">メール認証を行った日時：<%= current_comp.confirmed_at %></p><br>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%# アドレス・パスワード変更 %>
+<%= render "devise/shared/edit_form", resource: resource %>

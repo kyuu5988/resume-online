@@ -11,7 +11,7 @@ ja:
       locked: 'あなたのアカウントは凍結されています。'
       last_attempt: 'あなたのアカウントが凍結される前に、複数回の操作がおこなわれています。'
       not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
-      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+      timeout: '安全の為自動でログアウトしました。もう一度ログインして下さい。'
       unauthenticated: 'ログインしてご利用ください。'
       unconfirmed: 'メールアドレスの本人確認が必要です。'
     mailer:
@@ -38,7 +38,7 @@ ja:
       signed_up_but_inactive: 'ログインするためには、アカウントを有効化してください。'
       signed_up_but_locked: 'アカウントが凍結されているためログインできません。'
       signed_up_but_unconfirmed: '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
-      update_needs_confirmation: 'アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。'
+      update_needs_confirmation: '新しいメールアドレスに認証メールが送信されました。'
       updated: 'アカウント情報を変更しました。'
     sessions:
       signed_in: '正常にログインしました。'
