@@ -19,6 +19,9 @@
     <%# header %>
     <header>
       <p>ResumeOnline</p>
+      <%= link_to 'ユーザー登録', new_user_registration_path, class: "sign-up" %>
+      <%= link_to '企業ユーザー登録', new_comp_registration_path, class: "sign-up" %>
+
     </header>
 
     <%= yield %>

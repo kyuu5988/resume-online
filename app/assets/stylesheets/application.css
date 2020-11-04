@@ -29,3 +29,8 @@ header, footer {
   background-color: cornflowerblue;
 }
 
+a {
+  text-decoration: none;
+}
+
+
