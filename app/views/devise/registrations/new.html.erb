@@ -2,28 +2,49 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="form-wrap">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="field">
+      <%= f.label :本名 %><br />
+      <%= f.text_field :name, class:"", id:"", placeholder:"例) 山田　花子", maxlength:"35",autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :フリガナ %><br />
+      <%= f.text_field :kana, class:"", id:"", placeholder:"例) ヤマダ　ハナコ", maxlength:"35", autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :生年月日 %><br />
+      <%= f.date_field :birth, value: "2000-01-01", class:"", id:"" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :性別 %><br />
+      <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {class:"", id:""}) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, class:"", id:"", autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :password, class:"", id:"", placeholder:"8文字以上", autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :パスワード再入力 %><br />
+      <%= f.password_field :password_confirmation, class:"", id:"", placeholder:"もう一度同じパスワードを入力", autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "無料新規登録", class:"" %>
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>

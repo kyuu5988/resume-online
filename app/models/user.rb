@@ -7,5 +7,9 @@ class User < ApplicationRecord
 
   has_many :resumes
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :gender
+
+
 
 end
