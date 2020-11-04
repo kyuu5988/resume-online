@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_234043) do
+ActiveRecord::Schema.define(version: 2020_11_04_001341) do
 
   create_table "comps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,6 +37,32 @@ ActiveRecord::Schema.define(version: 2020_11_03_234043) do
     t.index ["confirmation_token"], name: "index_comps_on_confirmation_token", unique: true
     t.index ["email"], name: "index_comps_on_email", unique: true
     t.index ["reset_password_token"], name: "index_comps_on_reset_password_token", unique: true
+  end
+
+  create_table "resumes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status_id", null: false
+    t.string "pass_code"
+    t.date "cre_date"
+    t.string "adrs"
+    t.string "adrs2"
+    t.string "phone"
+    t.string "mail"
+    t.string "cmt"
+    t.string "family"
+    t.integer "consort_id"
+    t.text "others"
+    t.string "abroad"
+    t.text "abroad_content"
+    t.text "other_study"
+    t.text "lang"
+    t.text "license"
+    t.text "hope"
+    t.text "pr"
+    t.text "pr2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,4 +92,5 @@ ActiveRecord::Schema.define(version: 2020_11_03_234043) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "resumes", "users"
 end
