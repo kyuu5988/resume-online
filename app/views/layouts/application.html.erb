@@ -20,14 +20,22 @@
     <header>
 
       <%= link_to 'ResumeOnline', "/", class:"" %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p><!--削除予定-->
 
       <div class="" id="">
         <ul class="" id="">
           <% if user_signed_in? %>
           <li><%= link_to current_user.name, edit_user_registration_path, class: "" %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+
+          <% elsif comp_signed_in? %>
+          <li><%= link_to current_comp.name, edit_comp_registration_path, class: "" %></li>
+          <li><%= link_to 'ログアウト', destroy_comp_session_path, method: :delete, class: "logout" %></li>
+
           <% else %>
           <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+          <li><%= link_to '企業ログイン', new_comp_session_path, class: "login" %></li>
           <li><%= link_to 'ユーザー登録', new_user_registration_path, class: "sign-up" %></li>
           <li><%= link_to '企業ユーザー登録', new_comp_registration_path, class: "sign-up" %></li>
           <% end %>

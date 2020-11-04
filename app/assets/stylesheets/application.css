@@ -33,4 +33,12 @@ a {
   text-decoration: none;
 }
 
+.notice {
+  color: red;
+}
+
+.alert {
+  color: green;
+}
+
 
