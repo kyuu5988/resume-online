@@ -1,5 +1,6 @@
 <h2 class=""><%= current_user.name %>様 アカウント情報</h2>
 
+<%# 各種情報 %>
 <div class="">
   <p class="">登録情報</p>
   <p class="">　　生年月日：<%= current_user.birth %></p>
@@ -9,44 +10,119 @@
   <p class="">テーマカラー：<%= current_user.them_col %></p><br>
 </div>
 
+<%# セキュリティ情報 %>
 <div class="">
+  <p class="">セキュリティ情報</p>
+  <p class="">前回ログイン日時：<%= current_user.last_sign_in_at %></p>
+  <p class="">最新ログイン日時：<%= current_user.current_sign_in_at %></p>
+  <p class="">　前回ログインIP：<%= current_user.last_sign_in_ip %></p>
+  <p class="">　最新ログインIP：<%= current_user.current_sign_in_ip %></p>
+  <p class="">累計ログイン回数：<%= current_user.sign_in_count %></p><br>
+  <p class="">前回メール認証送信日時：<%= current_user.confirmation_sent_at %></p>
+  <p class="">メール認証を行った日時：<%= current_user.confirmed_at %></p>
+  <p class="">最後に情報更新した日時：<%= current_user.updated_at %></p><br>
 </div>
 
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%# メールアドレス変更 %>
+<div class="">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+    <div class="field">
+    <%= f.label :メールアドレスの変更 %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    </div>
+    <%# テーマカラー %>
+    <div class="field">
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>【すでにアドレス変更申請済】 <%= resource.unconfirmed_email %>宛てに認証メールを送信しましたので認証を行って下さい。</div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+     <div>【すでにアドレス変更申請済】 <%= resource.unconfirmed_email %>宛てに認証メールを送信しましたので認証を行って下さい。</div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "認証メール送信", class: '' %>
+    </div>
+    <p class="">認証完了後にアドレス変更となります。</p><br><br>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<%# パスワード変更 %>
+<div class="">
+  <p class="">パスワードの変更</p>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :現在のパスワード %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :新しいパスワード %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
 
-<h3>Cancel my account</h3>
+    <div class="field">
+      <%= f.label :新しいパスワード再入力 %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <div class="actions">
+      <%= f.submit "パスワード変更", class: '' %>
+    </div>
+  <% end %>
+  
+</div>
 
-<%= link_to "Back", :back %>
+
+
+<%# デフォルトフォーム %>
+<div class="hide">
+
+  <br><br><p>ここからはデフォルトフォーム。一時保留</p>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :メールアドレスの変更 %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>【すでにアドレス変更申請済】 <%= resource.unconfirmed_email %>宛てに認証メールを送信しましたので認証を行って下さい。</div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "情報更新", class: '' %>
+    </div>
+  <% end %>
+
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+  <%= link_to "Back", :back %>
+
+</div>

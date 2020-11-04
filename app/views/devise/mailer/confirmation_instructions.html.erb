@@ -1,5 +1,8 @@
+<%= current_user.name %>様
+
+<%# デフォルト %>
 <p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>以下のリンクをクリックするとメールアドレスの認証が完了します。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to '認証する', confirmation_url(@resource, confirmation_token: @token) %></p>
