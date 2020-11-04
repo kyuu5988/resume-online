@@ -23,3 +23,9 @@ body {
   color: #3b4043;
 }
 
+header, footer {
+  width: 100xw;
+  height: auto;
+  background-color: cornflowerblue;
+}
+
